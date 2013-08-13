@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * @author alexec (alex.e.c@gmail.com)
  */
-public interface Tree<P, T> {
+public interface Tree<P, T> extends Iterable<T> {
 
 	P root();
 

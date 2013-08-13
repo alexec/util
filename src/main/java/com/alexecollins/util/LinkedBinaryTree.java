@@ -1,7 +1,6 @@
 package com.alexecollins.util;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * @author alexec (alex.e.c@gmail.com)
@@ -40,7 +39,14 @@ public class LinkedBinaryTree<T> implements BinaryTree<BinaryTreeNode<T>, T> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Collection<BinaryTreeNode<T>> children(BinaryTreeNode<T> p) {
-		return Arrays.<BinaryTreeNode<T>>asList(p.getLeft(), p.getRight());
+		final List<BinaryTreeNode<T>> children = new ArrayList<BinaryTreeNode<T>>(2);
+		if (p.getLeft() !=null) {
+			children.add(p.getLeft());
+		}
+		if (p.getRight() != null) {
+			children.add(p.getRight());
+		}
+		return children;
 	}
 
 	@Override
@@ -111,5 +117,37 @@ public class LinkedBinaryTree<T> implements BinaryTree<BinaryTreeNode<T>, T> {
 	@Override
 	public T element(BinaryTreeNode<T> p) {
 		return p.get();
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+			private final Queue<T> q = new LinkedList<T>();
+
+			{
+				BinaryTrees.preOrderTraverse(LinkedBinaryTree.this, new Visitor<BinaryTreeNode<T>, T>() {
+
+					@Override
+					public void accept(Tree<BinaryTreeNode<T>, T> t, BinaryTreeNode<T> p) {
+						q.add(t.element(p));
+					}
+				});
+			}
+
+			@Override
+			public boolean hasNext() {
+				return !q.isEmpty();
+			}
+
+			@Override
+			public T next() {
+				return q.remove();
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
 	}
 }
