@@ -7,11 +7,11 @@ public final class BinaryTrees {
 	private BinaryTrees() {
 	}
 
-	public static <P, T> void preOrderTraverse(BinaryTree<P, T> t, Visitor<P,T> v) {
+	public static <P, T> void preOrderTraverse(BinaryTree<P, T> t, TreeVisitor<P,T> v) {
 		preOrderTraverse(t, t.root(), v);
 	}
 
-	public static  <P, T> void preOrderTraverse(BinaryTree<P, T> t, P p, Visitor<P,T> v) {
+	private static  <P, T> void preOrderTraverse(BinaryTree<P, T> t, P p, TreeVisitor<P,T> v) {
 		v.accept(t, p);
 		if (t.isInternal(p)) {
 			preOrderTraverse(t, t.leftChild(p), v);
@@ -19,11 +19,11 @@ public final class BinaryTrees {
 		}
 	}
 
-	public static  <P, T> void postOrderTraverse(BinaryTree<P, T> t, Visitor<P,T> v) {
+	public static  <P, T> void postOrderTraverse(BinaryTree<P, T> t, TreeVisitor<P,T> v) {
 		postOrderTraverse(t, t.root(), v);
 	}
 
-	public static <P, T> void postOrderTraverse(BinaryTree<P, T> t, P p, Visitor<P,T> v) {
+	private static <P, T> void postOrderTraverse(BinaryTree<P, T> t, P p, TreeVisitor<P,T> v) {
 		if (t.isInternal(p)) {
 			preOrderTraverse(t, t.leftChild(p), v);
 			preOrderTraverse(t, t.rightChild(p), v);
@@ -31,11 +31,11 @@ public final class BinaryTrees {
 		v.accept(t, p);
 	}
 
-	public static  <P, T> void inOrderTraverse(BinaryTree<P, T> t, Visitor<P,T> v) {
+	public static  <P, T> void inOrderTraverse(BinaryTree<P, T> t, TreeVisitor<P,T> v) {
 		inOrderTraverse(t, t.root(), v);
 	}
 
-	public static <P, T> void inOrderTraverse(BinaryTree<P, T> t, P p, Visitor<P, T> v) {
+	private static <P, T> void inOrderTraverse(BinaryTree<P, T> t, P p, TreeVisitor<P, T> v) {
 		final boolean internal = t.isInternal(p);
 		if (internal) {
 			preOrderTraverse(t, t.leftChild(p), v);
@@ -46,11 +46,11 @@ public final class BinaryTrees {
 		}
 	}
 
-	public static <P, T> void eulerTourTraverse(BinaryTree<P, T> t, EulerVisitor<P, T> v) {
+	public static <P, T> void eulerTourTraverse(BinaryTree<P, T> t, EulerTreeVisitor<P, T> v) {
 		eulerTourTraverse(t, t.root(), v);
 	}
 
-	public static <P, T> void eulerTourTraverse(BinaryTree<P, T> t, P p, EulerVisitor<P, T> v) {
+	private static <P, T> void eulerTourTraverse(BinaryTree<P, T> t, P p, EulerTreeVisitor<P, T> v) {
 		if (t.isExternal(p)) {
 			v.acceptExternal(t, p);
 		} else {

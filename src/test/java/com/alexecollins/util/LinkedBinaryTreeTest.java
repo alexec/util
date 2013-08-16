@@ -21,7 +21,7 @@ public class LinkedBinaryTreeTest {
 			sut.replace(p, i++);
 		}
 
-		final Visitor<BinaryTreeNode<Integer>, Integer> v = new Visitor<BinaryTreeNode<Integer>, Integer>() {
+		final TreeVisitor<BinaryTreeNode<Integer>, Integer> v = new TreeVisitor<BinaryTreeNode<Integer>, Integer>() {
 			@Override
 			public void accept(Tree<BinaryTreeNode<Integer>, Integer> t, BinaryTreeNode<Integer> p) {
 				System.out.println(t.element(p));
@@ -38,7 +38,7 @@ public class LinkedBinaryTreeTest {
 		System.out.println("in-order");
 		BinaryTrees.inOrderTraverse(sut, v);
 		System.out.println("euler-tour");
-		BinaryTrees.eulerTourTraverse(sut, new EulerVisitor<BinaryTreeNode<Integer>, Integer>() {
+		BinaryTrees.eulerTourTraverse(sut, new EulerTreeVisitor<BinaryTreeNode<Integer>, Integer>() {
 			@Override
 			public void acceptExternal(BinaryTree<BinaryTreeNode<Integer>, Integer> t, BinaryTreeNode<Integer> p) {
 				System.out.println(t.element(p));

@@ -2,7 +2,10 @@ package com.alexecollins.util;
 
 
 /**
+ * Functional methods for trees.
+ *
  * @author alexec (alex.e.c@gmail.com)
+ * @see java.util.Collections
  */
 public final class Trees {
 	private Trees() {
@@ -24,22 +27,22 @@ public final class Trees {
 		}
 	}
 
-	public static <P, T> void preOrderTraverse(Tree<P, T> t, Visitor<P,T> v) {
+	public static <P, T> void preOrderTraverse(Tree<P, T> t, TreeVisitor<P,T> v) {
 		preOrderTraverse(t, t.root(), v);
 	}
 
-	public static <P, T> void preOrderTraverse(Tree<P, T> t, P p, Visitor<P,T> v) {
+	private static <P, T> void preOrderTraverse(Tree<P, T> t, P p, TreeVisitor<P,T> v) {
 		v.accept(t, p);
 		for (P p1 : t.children(p)) {
 			preOrderTraverse(t,p1,v);
 		}
 	}
 
-	public static <P, T> void postOrderTraverse(Tree<P, T> t, Visitor<P,T> v) {
+	public static <P, T> void postOrderTraverse(Tree<P, T> t, TreeVisitor<P,T> v) {
 		postOrderTraverse(t, t.root(), v);
 	}
 
-	public static <P, T> void postOrderTraverse(Tree<P, T> t, P p, Visitor<P,T> v) {
+	private static <P, T> void postOrderTraverse(Tree<P, T> t, P p, TreeVisitor<P,T> v) {
 		for (P p1 : t.children(p)) {
 			postOrderTraverse(t,p1,v);
 		}

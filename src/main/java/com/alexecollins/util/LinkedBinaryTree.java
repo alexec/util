@@ -3,6 +3,8 @@ package com.alexecollins.util;
 import java.util.*;
 
 /**
+ * A binary tree using an expensive linked-node.
+ *
  * @author alexec (alex.e.c@gmail.com)
  */
 public class LinkedBinaryTree<T> implements BinaryTree<BinaryTreeNode<T>, T> {
@@ -125,7 +127,7 @@ public class LinkedBinaryTree<T> implements BinaryTree<BinaryTreeNode<T>, T> {
 			private final Queue<T> q = new LinkedList<T>();
 
 			{
-				BinaryTrees.preOrderTraverse(LinkedBinaryTree.this, new Visitor<BinaryTreeNode<T>, T>() {
+				BinaryTrees.preOrderTraverse(LinkedBinaryTree.this, new TreeVisitor<BinaryTreeNode<T>, T>() {
 
 					@Override
 					public void accept(Tree<BinaryTreeNode<T>, T> t, BinaryTreeNode<T> p) {

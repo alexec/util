@@ -3,6 +3,11 @@ package com.alexecollins.util;
 import java.util.Collection;
 
 /**
+ * An abstract tree structure.
+ *
+ * @param <P> position in the tree
+ * @param <T> an element at the position
+ *
  * @author alexec (alex.e.c@gmail.com)
  */
 public interface Tree<P, T> extends Iterable<T> {
