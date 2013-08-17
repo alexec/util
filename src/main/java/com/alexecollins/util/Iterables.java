@@ -70,7 +70,7 @@ public final class Iterables {
 			}
 
 			private I findNext() {
-				while (!it.hasNext()) {
+				while (it.hasNext()) {
 					final I n = it.next();
 					if (fn.apply(n)) {
 						return n;
