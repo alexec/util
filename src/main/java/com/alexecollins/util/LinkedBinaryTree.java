@@ -96,7 +96,6 @@ public class LinkedBinaryTree<T> implements BinaryTree<BinaryTreeNode<T>, T> {
 
 	@Override
 	public void remove(BinaryTreeNode<T> p) {
-
 		if (!isExternal(p)) {
 			throw new UnsupportedOperationException("cannot remove non-external position");
 		}

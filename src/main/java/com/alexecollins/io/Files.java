@@ -5,6 +5,8 @@ import com.alexecollins.lambda.Fn;
 import java.io.*;
 
 /**
+ * Simple, memory efficient file line by line iterator.
+ *
  * @author alexec (alex.e.c@gmail.com)
  */
 public final class Files {
@@ -14,19 +16,19 @@ public final class Files {
 	/**
 	 * Evaluate the expression for each line.
 	 */
-	public static void eachLine(final File f, final Fn<String, Void> x) throws IOException {
+	public static void each(final File f, final Fn<String, Void> fn) throws IOException {
 		final BufferedReader in = new BufferedReader(new FileReader(f));
 		try {
 			String l;
 			while ((l = in.readLine()) != null) {
-				x.apply(l);
+				fn.apply(l);
 			}
 		} finally {
 			in.close();
 		}
 	}
 
-	public static void eachLine(final String f, final Fn<String, Void> x) throws IOException {
-		eachLine(new File(f), x);
+	public static void each(final String f, final Fn<String, Void> fn) throws IOException {
+		each(new File(f), fn);
 	}
 }
